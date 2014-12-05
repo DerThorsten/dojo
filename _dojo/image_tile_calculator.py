@@ -8,10 +8,19 @@ import lxml
 import lxml.etree
 import glob
 import numpy as np
+import copy
+def mkdir_safe( path, mode = None):
 
-def mkdir_safe( dir_to_make ):
+    os.makedirs(path, mode)
 
-    os.makedirs(dir_to_make)
+orgOsDir = copy.copy(os.makedirs)
+os.makedirs = None
+def mymakedir(path, mode= None):
+    if not os.path.exists(path):
+         orgOsDir(path)
+
+os.makedirs = mymakedir
+
 
 def run(input_dir, output_dir):
 
@@ -28,14 +37,22 @@ def run(input_dir, output_dir):
     nimages_to_process            = 1337
 
 
+    print "original_input_images_path :",original_input_images_path
+    print "input_image_extension ",input_image_extension
                     
-            
-    files = sorted( glob.glob( original_input_images_path + '/*' + input_image_extension ) )
-
+    if True:
+                
+        files = sorted( glob.glob( original_input_images_path + '/*' + output_image_extension ) )
+    else :
+        relevant_path = original_input_images_path
+        included_extenstions = [output_image_extension,'.tiff'] ;
+        file_names = [fn for fn in os.listdir(relevant_path) if any([fn.endswith(ext) for ext in included_extenstions])]
+    print files
     tile_index_z = 0
 
-    for file in files:
-
+    print "\n\n\n\n ","len",len(files)
+    for ii, file in enumerate(files):
+        print ii,"fobar"
         original_image = PIL.Image.open( file )
 
 

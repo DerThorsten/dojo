@@ -76,11 +76,14 @@ class Setup(object):
 
     '''
 
+
     img_dir = os.path.join(self.__tmp_dir,'input_images')
     seg_dir = os.path.join(self.__tmp_dir,'input_labels')
 
-    os.mkdir(img_dir)
-    os.mkdir(seg_dir)
+    if not os.path.exists(img_dir):
+      os.mkdir(img_dir)
+    if not os.path.exists(seg_dir):
+      os.mkdir(seg_dir)
 
     # print request.files['img0']
     # return

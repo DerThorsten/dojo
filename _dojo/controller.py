@@ -506,6 +506,8 @@ class Controller(object):
 
     s_tile = np.zeros(tile.shape)
 
+    print "tileshape",s_tile.shape
+
     for l in self.lookup_merge_label(label_id):
 
       s_tile[tile == int(l)] = 1
@@ -519,6 +521,8 @@ class Controller(object):
 
     label_image,n = mh.label(s_tile)
 
+    print "label_image",label_image.shape
+    
     if (n!=3):
       print 'ERROR',n
 
@@ -979,6 +983,7 @@ class Controller(object):
     #
     # run watershed
     #
+    print "input shape for watershed\n", brush_image.shape
     ws = mh.cwatershed(brush_image.max() - brush_image, seeds)
 
     mh.imsave('/tmp/end_points.tif', 50*end_points.astype(np.uint8))

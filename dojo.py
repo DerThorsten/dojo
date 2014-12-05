@@ -55,7 +55,7 @@ class ServerLogic:
     self.__out_dir = out_dir
 
     # create temp folder
-    tmpdir = tempfile.mkdtemp()
+    tmpdir = "/media/tbeier/data/datasets/knott-block-img/dojo_folder/tmp_dir"
     self.__tmpdir = tmpdir
 
     # register two data sources
@@ -188,9 +188,9 @@ if __name__ == "__main__":
   if len(sys.argv) == 1:
     # dojo was started without parameters
     # so we need to add an input folder
-    input_dir = tempfile.mkdtemp()
+    input_dir = "/media/tbeier/data/datasets/knott-block-img/dojo_folder/input_dir"
     # and a output folder
-    output_dir = tempfile.mkdtemp()
+    output_dir =  "/media/tbeier/data/datasets/knott-block-img/dojo_folder/output_dir"
     # and a free port
     port = 1336
     result = 0

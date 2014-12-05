@@ -344,9 +344,11 @@ def run(input_dir, output_dir):
 
         ## Write all segment info to a single file
 
-        print 'Writing colorMap file (hdf5)'
+        print 'Writing colorMap file (hdf5)',output_color_map_file
 
-        hdf5             = h5py.File( output_color_map_file, 'w' )
+        if os.path.exists(output_color_map_file):
+            os.remove(output_color_map_file)
+        hdf5  = h5py.File( output_color_map_file, 'w' )
 
         hdf5['idColorMap'] = color_map
 
